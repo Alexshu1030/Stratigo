@@ -94,7 +94,7 @@ module control(
 			S_STATE1:
 			begin
 				turn_player <= 1'b0;
-				next_phase<=S_TURN
+				next_phase<=S_TURN;
 			end
 			S_TURN: 	
 			begin
@@ -111,7 +111,7 @@ module control(
 			S_MOVE: begin	
 				next_phase <= S_MOVE;		
 				if (back)
-					next_phase <= S__TURN;
+					next_phase <= S_TURN;
 				if (go) begin
 					//check if in range
 					//checks the absolute value of the diffrence of x adds it to the abs of y and check if it equals 1

@@ -84,7 +84,7 @@ module datapath(
 		S_CAP =   3'd4,
 		S_CAP2 =  3'd5,
 		S_STATE1 =  3'd6,
-		S_DEAD =   3'd7,
+		S_DEAD =   3'd7;
 		
 	
 	localparam

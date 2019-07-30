@@ -1,4 +1,4 @@
-module draw_board
+module stratigo
 	(
 		CLOCK_50,						//	On Board 50 MHz
 		// Your inputs and outputs here
