@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Jul 30 16:40:44 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : stratigo
+Top-level Entity Name : stratigo
+Family : Cyclone IV E
+Device : EP4CE115F29C7
+Timing Models : Final
+Total logic elements : 12,541 / 114,480 ( 11 % )
+    Total combinational functions : 12,534 / 114,480 ( 11 % )
+    Dedicated logic registers : 514 / 114,480 ( < 1 % )
+Total registers : 514
+Total pins : 68 / 529 ( 13 % )
+Total virtual pins : 0
+Total memory bits : 57,600 / 3,981,312 ( 1 % )
+Embedded Multiplier 9-bit elements : 0 / 532 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )

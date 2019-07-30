@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at draw_board_datapath.v(23): always construct contains both blocking and non-blocking assignments File: C:/Users/garyx/Desktop/UTSC Stuff/Year 2/Summer 2019/CSCB58/Labs/Stratigo/draw_board_datapath.v Line: 23
+Warning (10268): Verilog HDL information at datapath.v(109): always construct contains both blocking and non-blocking assignments File: C:/Users/garyx/Desktop/UTSC Stuff/Year 2/Summer 2019/CSCB58/Labs/Stratigo/datapath.v Line: 109

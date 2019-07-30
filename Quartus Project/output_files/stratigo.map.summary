@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Jul 30 16:37:15 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : stratigo
+Top-level Entity Name : stratigo
+Family : Cyclone IV E
+Total logic elements : 12,551
+    Total combinational functions : 12,533
+    Dedicated logic registers : 514
+Total registers : 514
+Total pins : 68
+Total virtual pins : 0
+Total memory bits : 57,600
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1
