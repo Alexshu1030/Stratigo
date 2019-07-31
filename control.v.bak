@@ -75,7 +75,8 @@ module control(
 			   
 	// State logic AKA State table
 	assign ledr[2:0] = current_phase;
-	assign ledr[3:3] = turn_player;
+	assign ledr[9:3] = mouse_y;
+	assign ledr[9:3] = mouse_y;
 	always @(posedge clk)
 	begin
 		pos <= (raw_x[2:0] + raw_y[2:0] * 4'd8) * 4'd6;
@@ -98,11 +99,10 @@ module control(
 			S_TURN: 	
 			begin
 				next_phase <= S_TURN;
-				if (go)
-//				if (go && board[ pos+:6] != 6'b000000 && board[ pos+:6] != 6'b111111)
-//					//check if it is your unit
-//					if (board[pos+:1]  == turn_player)
-//					//check if it is a movable unit
+				if (go && board[ pos+:6] != 6'b000000 && board[ pos+:6] != 6'b111111)
+					//check if it is your unit
+					if (board[pos+:1]  == turn_player)
+					//check if it is a movable unit
 						if (board[ pos+1 +:5] != U_B && board[ pos+1 +:5] != U_F)			
 							begin
 							next_phase <= S_MOVE;		
@@ -123,8 +123,7 @@ module control(
 							next_phase <=S_CAP;
 						end
 						//checks if capturing check if not 111111 and the last most digit is not the same as  turn player
-						else if (board[ pos+:6] != 6'b111111)// || board[ pos+:1] != turn_player) 
-						begin
+						else if (board[ pos+:6] != 6'b111111 && board[ pos+:1] != turn_player) begin
 							next_phase <=S_CAP;
 							//checks if they are the same piece
 							if (board[ (mouse_x + mouse_y * 4'd8) * 4'd6+1 +:5] == board[ pos+1 +:5])
@@ -172,7 +171,7 @@ module control(
 			S_CAP2: 
 				begin 
 				next_phase <= S_TURN;
-				turn_player <= !turn_player;
+				turn_player <= ~turn_player;
 				end
 			
 		endcase
