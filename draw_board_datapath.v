@@ -8,6 +8,8 @@ module draw_board_datapath(
     output reg plot,
 	output reg [14:0] long_counter,
 	output reg [7:0] counter,
+	input [2:0] raw_x,
+	input [2:0], raw_y,
 	inout reg [5:0] x_y_pos, // [5:3] is y, and [2:0] is x
 	input [5:0] draw_value,
 	input turn_player
@@ -55,62 +57,71 @@ module draw_board_datapath(
 					counter <= counter + 1'b1;
 				end
 				// REPEATED CODE HERE, can just put in default
-				5'b00001: begin // Draw Flag
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1; 
-					counter <= counter + 1'b1;
-				end
-				5'b00010: begin // Draw Bomb
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				5'b00011: begin // Draw Spy
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				5'b00100: begin // Draw 2
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				5'b00101: begin // Draw 3
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				5'b00110: begin // Draw 9
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				5'b00111: begin // Draw 10
-					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
-					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
-					plot <= 1'b1;
-					counter <= counter + 1'b1;
-				end
-				// default: begin
-					// // Copy paste the draw_piece code here
+				// 5'b00001: begin // Draw Flag
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1; 
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00010: begin // Draw Bomb
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00011: begin // Draw Spy
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00100: begin // Draw 2
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00101: begin // Draw 3
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00110: begin // Draw 9
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				// 5'b00111: begin // Draw 10
+					// x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+					// y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+					// colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					// plot <= 1'b1;
+					// counter <= counter + 1'b1;
+				// end
+				default: begin
+					// Copy paste the draw_piece code here
 					// if (highlight_signal && (selected_x == x_y_pos) && (selected_y == x_y_pos) begin
 						// if (colour != 3'b111)
 							// colour <= turn_player ? 3'b110 : 3'b011; // Draw a highlight colour depending on the player turn
 					// end
-				// end
+						x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
+						y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
+						plot <= 1'b1;
+					if ((raw_x[2:0] == x_y_pos[2:0]) && (raw_y[2:0] == x_y_pos[5:3]))
+						// Currently selected piece by SW switches
+						colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b110 : 3'b011);
+					else
+						colour <= (unit_pixels[counter[3:0]+16*counter[7:4] +: 1] && draw_value[5:5] == turn_player) ? 3'b111 : (draw_value[5:5] ? 3'b100 : 3'b001);
+					counter <= counter + 1'b1;
+				end
 			endcase
 		end
 	end
