@@ -20,9 +20,6 @@ module control(
 		input [2:0] mouse_y
 	);		
 	
-	
-	//drawing states	
-	reg [3:0] current_state;
 	//moving states
 	reg [2:0] next_phase;
 	reg temp; // DEBUGGING
@@ -123,7 +120,7 @@ module control(
 							next_phase <=S_CAP;
 						end
 						//checks if capturing check if not 111111 and the last most digit is not the same as  turn player
-						else if (board[ pos+:6] != 6'b111111)// || board[ pos+:1] != turn_player) 
+						else if (board[ pos+:6] != 6'b111111) && board[ pos+:1] != turn_player) 
 						begin
 							next_phase <=S_CAP;
 							//checks if they are the same piece
@@ -172,7 +169,10 @@ module control(
 			S_CAP2: 
 				begin 
 				next_phase <= S_TURN;
-				turn_player <= !turn_player;
+					if (turn_player == 1'b0)
+						turn_player <= 1'b1;
+					else
+						turn_player <= 1'b0;
 				end
 			
 		endcase

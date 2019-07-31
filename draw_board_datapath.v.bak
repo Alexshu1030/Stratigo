@@ -9,7 +9,7 @@ module draw_board_datapath(
 	output reg [14:0] long_counter,
 	output reg [7:0] counter,
 	input [2:0] raw_x,
-	input [2:0] raw_y,
+	input [2:0], raw_y,
 	inout reg [5:0] x_y_pos, // [5:3] is y, and [2:0] is x
 	input [5:0] draw_value,
 	input turn_player
