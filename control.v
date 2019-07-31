@@ -100,7 +100,7 @@ module control(
 //					//check if it is your unit
 //					if (board[pos+:1]  == turn_player)
 //					//check if it is a movable unit
-						if (board[ pos+1 +:5] != U_B && board[ pos+1 +:5] != U_F)			
+//						if (board[ pos+1 +:5] != U_B && board[ pos+1 +:5] != U_F)			
 							begin
 							next_phase <= S_MOVE;		
 							end
@@ -120,7 +120,7 @@ module control(
 							next_phase <=S_CAP;
 						end
 						//checks if capturing check if not 111111 and the last most digit is not the same as  turn player
-						else if (board[ pos+:6] != 6'b111111) && board[ pos+:1] != turn_player) 
+						else if (board[ pos+:6] != 6'b111111 && board[ pos+:1] != turn_player) 
 						begin
 							next_phase <=S_CAP;
 							//checks if they are the same piece
