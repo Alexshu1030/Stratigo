@@ -105,7 +105,9 @@ module datapath(
 		U_NMOVE = 6'b111111;
 		
 	assign ledr[11:6] = board[ pos+:6];
-	assign ledr[5:0] = board[ (mouse_x[2:0] + mouse_y[2:0] * 4'd8) * 4'd6 +:6];
+	assign ledr[2:0] = mouse_y;
+	assign ledr[5:3] = mouse_x;
+	//assign ledr[5:0] = board[ (mouse_x[2:0] + mouse_y[2:0] * 4'd8) * 4'd6 +:6];
 	//GAME LOGIC! including placing pieces down
 	always@(posedge clk) begin
 		if(!resetn) begin
@@ -155,9 +157,9 @@ module datapath(
 					end
 				end
 				//S_STATE1: not used here
-				S_TURN: begin								
-					mouse_x <= raw_x[2:0];
-					mouse_y <= raw_y[2:0];
+				S_TURN: begin	
+					mouse_y[2:0] <= raw_y[2:0];				
+					mouse_x[2:0] <= raw_x[2:0];
 				end	
 					//updates target space first
 				S_CAP:
@@ -169,7 +171,7 @@ module datapath(
 							board[ pos+:6] <= board[ (mouse_x + mouse_y * 4'd8) * 4'd6 +: 6];
 						end
 						//your unit dies
-						C_DIE: board[ (mouse_x + mouse_y * 4'd8) * 4'd6+:6] <= 6'b000000;
+						C_DIE: board[ (mouse_x + mouse_y * 4'd8) * 4'd6 +:6] <= 6'b000000;
 						//both unit dies
 						C_TRADE:
 						begin
