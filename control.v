@@ -94,22 +94,25 @@ module control(
 			end
 			S_TURN: 	
 			begin
-				next_phase <= S_TURN;
-				if (go)
+				
+				if (go) begin
 //				if (go && board[ pos+:6] != 6'b000000 && board[ pos+:6] != 6'b111111)
 //					//check if it is your unit
 //					if (board[pos+:1]  == turn_player)
 //					//check if it is a movable unit
-						if (board[ pos+1 +:5] != U_B && board[ pos+1 +:5] != U_F)			
-							begin
-							next_phase <= S_MOVE;		
-							end
+						if ((board[pos+1 +:5] != U_B) && (board[ pos+1 +:5] != U_F))
+							next_phase <= S_MOVE;
+						else
+							next_phase <= S_TURN;
+				end
+				else
+					next_phase <= S_TURN;
 			end
 			S_MOVE: begin	
 				next_phase <= S_MOVE;		
 				if (back)
 					next_phase <= S_TURN;
-				if (go) begin
+			    if (go) begin
 					//check if in range
 					//checks the absolute value of the diffrence of x adds it to the abs of y and check if it equals 1
 					if ((raw_x[2:0] > mouse_x ? raw_x[2:0] - mouse_x : mouse_x - raw_x[2:0]) + (raw_y[2:0] > mouse_y ? raw_y[2:0] - mouse_y : mouse_y - raw_y[2:0]) == 1'b1)
