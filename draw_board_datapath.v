@@ -45,8 +45,11 @@ module draw_board_datapath(
 				5'b00000: begin // Draw Empty Block (Black)
 					x <= 1'b1 + x_y_pos[2:0]*5'd17 + counter[3:0];
 					y <= 1'b1 + x_y_pos[5:3]*5'd17 + counter[7:4];
-					colour <= 3'b000;
 					plot <= 1'b1;
+					if ((raw_x[2:0] == x_y_pos[2:0]) && (raw_y[2:0] == x_y_pos[5:3]))
+						colour <= 3'b101;
+					else
+						colour <= 3'b000;
 					counter <= counter + 1'b1;
 				end
 				5'b11111: begin // Draw unvisitable Block (White)
