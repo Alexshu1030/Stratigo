@@ -110,6 +110,8 @@ module stratigo
 		.plot(plot),
 		.long_counter(long_counter),
 		.counter(counter),
+		.raw_x(SW[5:3]),
+		.raw_y(SW[2:0]),
 		.x_y_pos(x_y_pos),
 		.draw_value(draw_value),
 		.turn_player(turn_player)
