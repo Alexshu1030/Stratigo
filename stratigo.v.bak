@@ -110,8 +110,6 @@ module stratigo
 		.plot(plot),
 		.long_counter(long_counter),
 		.counter(counter),
-		.raw_x(SW[5:3]),
-		.raw_y(SW[2:0]),
 		.x_y_pos(x_y_pos),
 		.draw_value(draw_value),
 		.turn_player(turn_player)
@@ -144,7 +142,7 @@ module stratigo
 		.mouse_x(mouse_x),
 		.mouse_y(mouse_y),
 		//debugging
-		.ledr(LEDR[17:6]),
+		.ledr(LEDR[17:12]),
 		.board(board),
 		);
 	
@@ -154,7 +152,7 @@ module stratigo
 		.resetn(resetn),
 		.go(~KEY[1]),
 		.back(~KEY[0]),
-		.ledr(LEDR[5:0]), // FOR DEBUGGING
+		.ledr(LEDR[11:0]), // FOR DEBUGGING
 		
 		//gameplay
 		.piece(piece),

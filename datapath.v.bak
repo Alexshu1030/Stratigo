@@ -20,7 +20,7 @@ module datapath(
 		output reg [2:0] mouse_y,
 				
 	//debuging 
-		output [11:0] ledr,
+		output [5:0] ledr,
 
 //board registers size is 8x8 x 6
 	output reg [384:0] board//to access the board memory, do (x + y*8 ) * 6
@@ -104,8 +104,7 @@ module datapath(
 		U_BLANK = 6'b000000,
 		U_NMOVE = 6'b111111;
 		
-	assign ledr[11:6] = board[ pos+:6];
-	assign ledr[5:0] = board[ (mouse_x[2:0] + mouse_y[2:0] * 4'd8) * 4'd6 +:6];
+		assign ledr = board[ pos+:6];
 	//GAME LOGIC! including placing pieces down
 	always@(posedge clk) begin
 		if(!resetn) begin
@@ -144,12 +143,12 @@ module datapath(
 					if (go && raw_x[2:0] >= 3'd4 && board[ pos+:6] == 1'b0&&raw_y[2:0]<4'd7) begin
 						//add pieces to the game board memory
 						//loads scout then 3 then 9 and so on...
-						if (piece < 5'd12) 		board[ pos+:6] <= {1'b1,U_2}; //(2)
-						else if (piece < 5'd14) board[ pos+:6] <= {1'b1,U_3}; //(3)
-						else if (piece < 5'd15) board[ pos+:6] <= {1'b1,U_9}; //(9)
-						else if (piece < 5'd16) board[ pos+:6] <= {1'b1,U_10}; //(10)
-						else if (piece < 5'd17) board[ pos+:6] <= {1'b1,U_S}; //(s)
-						else if (piece < 5'd19) board[ pos+:6] <= {1'b1,U_B}; //(b)
+						if (piece < 5'd13) 		board[ pos+:6] <= {1'b1,U_2}; //(2)
+						else if (piece < 5'd15) board[ pos+:6] <= {1'b1,U_3}; //(3)
+						else if (piece < 5'd16) board[ pos+:6] <= {1'b1,U_9}; //(9)
+						else if (piece < 5'd17) board[ pos+:6] <= {1'b1,U_10}; //(10)
+						else if (piece < 5'd18) board[ pos+:6] <= {1'b1,U_S}; //(s)
+						else if (piece < 5'd20) board[ pos+:6] <= {1'b1,U_B}; //(b)
 						else				board[ pos+:6] <= {1'b1,U_F}; //(f)
 						piece <= piece + 1'b1;
 					end
