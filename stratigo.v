@@ -113,6 +113,9 @@ module stratigo
 		.raw_x(SW[5:3]),
 		.raw_y(SW[2:0]),
 		.x_y_pos(x_y_pos),
+		.current_phase(current_phase),
+		.mouse_x(mouse_x),
+		.mouse_y(mouse_y)
 		.draw_value(draw_value),
 		.turn_player(turn_player)
 		);
