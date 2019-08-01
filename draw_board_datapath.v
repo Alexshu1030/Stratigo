@@ -11,9 +11,9 @@ module draw_board_datapath(
 	input [2:0] raw_x,
 	input [2:0] raw_y,
 	inout reg [5:0] x_y_pos, // [5:3] is y, and [2:0] is x
-	input [2:0] current_phase;
-	input [2:0] mouse_x;
-	input [2:0] mouse_y;
+	input [2:0] current_phase,
+	input [2:0] mouse_x,
+	input [2:0] mouse_y,
 	input [5:0] draw_value,
 	input turn_player
     );
