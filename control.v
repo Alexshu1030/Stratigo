@@ -105,11 +105,10 @@ module control(
 							next_phase <= S_MOVE;		
 							end
 			end
-			S_MOVE: begin	
-				next_phase <= S_MOVE;		
+			S_MOVE: begin			
 				if (back)
 					next_phase <= S_TURN;
-				if (go) begin
+				else if (go) begin
 					//check if in range
 					//checks the absolute value of the diffrence of x adds it to the abs of y and check if it equals 1
 					if ((raw_x[2:0] > mouse_x ? raw_x[2:0] - mouse_x : mouse_x - raw_x[2:0]) + (raw_y[2:0] > mouse_y ? raw_y[2:0] - mouse_y : mouse_y - raw_y[2:0]) == 1'b1)
@@ -164,6 +163,7 @@ module control(
 						end
 					end
 				end
+				else next_phase <= S_MOVE;
 			end
 			S_CAP: next_phase <= S_CAP2;
 			S_CAP2: 
