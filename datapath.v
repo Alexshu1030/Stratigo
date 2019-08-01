@@ -77,14 +77,14 @@ module datapath(
 		
 	localparam
 		//moving states
-		S_P1_START = 3'd0,
-		S_P2_START = 3'd1,
-		S_TURN =  3'd2,
-		S_MOVE =  3'd3,
-		S_CAP =   3'd4,
-		S_CAP2 =  3'd5,
-		S_STATE1 =  3'd6,
-		S_DEAD =   3'd7;
+		S_P1_START = 3'b000,
+		S_P2_START = 3'b001,
+		S_TURN =  3'b010,
+		S_MOVE =  3'b011,
+		S_CAP =   3'b100,
+		S_CAP2 =  3'b101,
+		S_STATE1 =  3'b110,
+		S_DEAD =   3'b111;
 		
 	
 	localparam
@@ -104,7 +104,7 @@ module datapath(
 		U_BLANK = 6'b000000,
 		U_NMOVE = 6'b111111;
 		
-	assign ledr[11:6] = board[ pos+:6];
+	assign ledr[11:6] = board[ (mouse_x[2:0] + mouse_y[2:0] * 4'd8) * 4'd6+:6];
 	assign ledr[2:0] = mouse_y;
 	assign ledr[5:3] = mouse_x;
 	//assign ledr[5:0] = board[ (mouse_x[2:0] + mouse_y[2:0] * 4'd8) * 4'd6 +:6];

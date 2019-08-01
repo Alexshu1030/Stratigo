@@ -87,11 +87,11 @@ module control(
 				next_phase <= (piece >= 6'b010100) ? S_STATE1 : S_P2_START;//count up for piece
 				turn_player	<= 1'b1;
 			end
-			S_STATE1:
-			begin
-				turn_player <= 1'b0;
-				next_phase<=S_TURN;
-			end
+//			S_STATE1:
+//			begin
+//				turn_player <= 1'b0;
+//				next_phase<=S_TURN;
+//			end
 			S_TURN: 	
 			begin
 				next_phase <= S_TURN;
